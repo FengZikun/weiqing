@@ -1,0 +1,46 @@
+{template '_header'}
+<div class="page-heading"><h2>系统授权 </h2></div>
+
+
+<form action="" method="post" class="form-horizontal form-validate" enctype="multipart/form-data" >
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">网站域名</label>
+        <div class="col-sm-9 col-xs-12">
+            <input type="text" name="domain" class="form-control" value="{$domain}" readonly/>
+            <span class="help-block">服务器域名</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">网站IP</label>
+        <div class="col-sm-9 col-xs-12">
+            <input type="text" name="ip" class="form-control" value="{$ip}" readonly/>
+            <span class="help-block">网站IP地址</span>		
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">官方店铺</label>
+        <div class="col-sm-9 col-xs-12">
+            <div class='form-control-static'><a href='https://wesambo.taobao.com' target='_blank'>https://wesambo.taobao.com</a></div>
+        </div>
+    </div>	
+    <div class="form-group">
+        <label class="col-sm-2 control-label">联系我们</label>
+        <div class="col-sm-9 col-xs-12">
+            <div class='form-control-static'><font color=red>淘宝搜索：微上宝科技</font>
+			<span class="help-block"></span>	
+		</div>
+    </div>	
+    <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-9 col-xs-12">
+            <div class='form-control-static'>
+                {if !empty($result['status'])}
+                <input type="button" style="margin-left:10px;" onclick="location.href='{php echo webUrl('system/auth/upgrade')}'" value="系统升级" class="btn btn-primary" />
+                {/if}
+
+            </div>
+        </div>
+    </div>
+</form>
+{template '_footer'}

@@ -1,0 +1,73 @@
+{template '_header'}
+<style>
+    .fui-list:before{border:none;}
+    .fui-according-header .remark:after {
+        -webkit-transform: rotate(135deg);
+        -ms-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+    .fui-according-header .active.remark:after {
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+    .fullback-container{background: #fafafa;padding:0.5rem;font-size:0.6rem;color:#666;}
+    .fullback-container p{height:0.9rem;line-height: 0.9rem;}
+    .fui-according{border-bottom:0.5rem solid #ededed;}
+    .fui-list-media img{height:3rem;width:3rem;}
+</style>
+<div class='fui-page  fui-page-current member-log-page'>
+    <div class="fui-header">
+        <div class="fui-header-left">
+            <a class="back"></a>
+        </div>
+        <div class="title">回赠记录</div>
+    </div>
+
+    <div class='fui-content navbar' style="padding-bottom: 0;">
+
+        <div id="tab" class="fui-tab fui-tab-danger">
+            <a data-tab="tab1"  class="external {if $_GPC['type']==0}active{/if}" data-type='0'>未完成</a>
+            <a data-tab="tab2" class='external {if $_GPC['type']==1}active{/if}'  data-type='1'>已完成</a>
+        </div>
+
+
+        <div class='content-empty' style='display:none;'>
+            <i class='icon icon-searchlist'></i><br/>暂时没有任何记录!
+        </div>
+
+        <div class='fui-list-group container' style="display:none;"></div>
+        <div class='infinite-loading'><span class='fui-preloader'></span><span class='text'> 正在加载...</span></div>
+    </div>
+
+    <script id="tpl_member_log_list" type="text/html">
+
+        <%each list as log%>
+        <div class="fui-list goods-item">
+
+            <div class="fui-list-inner">
+                <div class='title'>回赠金额:<%log.priceevery%>
+                </div>
+                <div class='text'> </div>
+                <div class='text'><%log.createtime%></div>
+            </div>
+            <div class='fui-list-angle'>
+                <% if log.type==1 %>
+                <span  class='fui-label fui-label-success'>成功</span>
+                <%else%>
+                <span  class='fui-label fui-label-default'>待回赠</span>
+                <%/if%>
+            </div>
+        </div>
+        <%/each%>
+    </script>
+
+    <script language='javascript'>
+        require(['biz/member/ydfullback'], function (modal) {
+            modal.init({page:"{$_GPC['page']}",type:"{$_GPC['type']}"});
+        });
+    </script>
+    {php $this->footerMenus()}
+</div>
+
+{template '_footer'}

@@ -1,0 +1,103 @@
+{if empty($diyitem['params']['style']) || $diyitem['params']['style']=='default1'}
+    <div class="headinfo" style="background: {$diyitem['style']['background']}; {if !empty($diyitem['style']['background'])}border: none;{/if}">
+        {if !empty($diyitem['params']['seticon'])}
+            <a class="setbtn" style="color: {$diyitem['style']['textcolor']};" href="{$diyitem['params']['setlink']}" data-nocache="true"><i class="icon {$diyitem['params']['seticon']}"></i></a>
+        {/if}
+        <div class="child">
+            <div class="title" style="color: {$diyitem['style']['textcolor']};">{$diyitem['info']['textmoney']}</div>
+            <div class="num" style="color: {$diyitem['style']['textlight']};">{$diyitem['info']['money']}</div>
+            {if !empty($diyitem['params']['leftnav'])}
+                <a class="btn" style="color: {$diyitem['style']['textcolor']}; border-color: {$diyitem['style']['textcolor']};" href="{$diyitem['params']['leftnavlink']}" data-nocache="true">{$diyitem['params']['leftnav']}</a>
+            {/if}
+        </div>
+        <div class="child userinfo" style="color: {$diyitem['style']['textcolor']};">
+            <a href="{php echo mobileUrl('member/info/face')}" data-nocache="true" style="color: {$diyitem['style']['textcolor']};">
+                <div class="face {$diyitem['style']['headstyle']}"><img src="{$diyitem['info']['avatar']}"></div>
+                <div class="name">{$diyitem['info']['nickname']}</div>
+            </a>
+            {if !empty($diyitem['params']['levellink'])}
+                <a class="level" href="{$diyitem['params']['levellink']}">[{$diyitem['info']['levelname']}] <i class="icon icon-question1" style="font-size: 0.6rem;"></i></a>
+            {else}
+                <div class="level">[{$diyitem['info']['levelname']}]</div>
+            {/if}
+        </div>
+        <div class="child">
+            <div class="title" style="color: {$diyitem['style']['textcolor']};">{$diyitem['info']['textcredit']}</div>
+            <div class="num" style="color: {$diyitem['style']['textlight']};">{$diyitem['info']['credit']}</div>
+            {if !empty($diyitem['params']['rightnav'])}
+            <a class="btn" style="color: {$diyitem['style']['textcolor']}; border-color: {$diyitem['style']['textcolor']};" href="{$diyitem['params']['rightnavlink']}" data-nocache="true">{$diyitem['params']['rightnav']}</a>
+            {/if}
+        </div>
+    </div>
+{elseif $diyitem['params']['style']=='default2'}
+    <div class="headinfo style-2" style="background: {$diyitem['style']['background']}; {if !empty($diyitem['style']['background'])}border: none;{/if}">
+        {if !empty($diyitem['params']['seticon'])}
+        <a class="setbtn" style="color: {$diyitem['style']['textcolor']};" href="{$diyitem['params']['setlink']}" data-nocache="true"><i class="icon {$diyitem['params']['seticon']}"></i></a>
+        {/if}
+        <div class="face {$diyitem['style']['headstyle']}"><img src="{$diyitem['info']['avatar']}"></div>
+        <div class="inner" style="color: {$diyitem['style']['textcolor']};">
+            <div class="name">{$diyitem['info']['nickname']}</div>
+            {if !empty($diyitem['params']['levellink'])}
+            <a class="level" href="{$diyitem['params']['levellink']}" style="color: {$diyitem['style']['textcolor']};">[{$diyitem['info']['levelname']}] <i class="icon icon-question1" style="font-size: 0.6rem;"></i></a>
+            {else}
+            <div class="level">[{$diyitem['info']['levelname']}]</div>
+            {/if}
+            <div class="credit">{$diyitem['info']['textmoney']}: <span style="color: {$diyitem['style']['textlight']};">{$diyitem['info']['money']}</span></div>
+            <div class="credit">{$diyitem['info']['textcredit']}: <span style="color: {$diyitem['style']['textlight']};">{$diyitem['info']['credit']}</span></div>
+        </div>
+    </div>
+{/if}
+<style>
+    .member-page .headinfo .child .title,.member-page .headinfo .child .num{
+        color: black;
+    }
+    .member-page .headinfo .child .btn{
+        color: black;
+        border: 1px solid black;;
+    }
+    .member-page .headinfo{
+        background:white;
+        border-top:none;
+    }
+</style>
+	<div class="headinfo" style="padding-top: 0px;">
+
+			<div class="child child2">
+				<div class="title">总回赠</div>
+				<div class="num">{php echo number_format($diyitem['info']['credit10']+$diyitem['info']['credit11'],2)}</div>
+			</div>
+			<div class="child child2">
+				<div class="title">昨日回赠</div>
+				<div class="num">{php echo number_format($diyitem['info']['credit10yesterday'],2)}</div>
+				{if $open_creditshop}<a href="{php echo mobileUrl('creditshop')}" class="external"><div class="btn">兑换</div></a>{/if}
+			</div>
+
+			<div class="child child2">
+				<a href="{php echo mobileUrl('member/ydfullback');}" data-nocache="true">
+				<div class="title">回赠明细</div>
+				<div class="num">{php echo number_format($diyitem['info']['credit10'],2)}</div>
+				<!-- <div class="btn">明细</div>  -->
+				
+				</a>
+			</div>
+	</div>
+
+
+
+	<div class="headinfo" style="padding-top: 0px;">
+
+		<div class="child child2">
+			<div class="title">现金消费</div>
+			<div class="num">{php echo $diyitem['info']['credit10totalconsume']}</div>
+		</div>
+		<div class="child child2">
+		<a href="http://ty.tywxpt.com/app/index.php?i=3&c=entry&m=ewei_shopv2&do=mobile&r=diypage&id=21">
+			<div class="title">现金充值</div>
+			</a>
+		</div>
+		<div class="child child2">
+			<div class="title">已回赠</div>
+			<div class="num">{php echo number_format($diyitem['info']['credit10total'],2)}</div>
+
+		</div>
+	</div>
